@@ -438,8 +438,11 @@ footer small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:v
         <div class="q"><span class="n">17</span><label for="q15">Who is the MAB Academy for (artists, brides or both), and when would you like it to open?</label><textarea id="q15" data-q="MAB Academy"></textarea></div>
       </div>
       <div class="answer-bar">
-        <p id="status" role="status" aria-live="polite"><span id="count">0</span> of 17 answered. Copy them, then paste into an email to [YOUR EMAIL].</p>
-        <button type="button" class="btn" id="copy">Copy my answers</button>
+        <p id="status" role="status" aria-live="polite"><span id="count">0</span> of 17 answered. Send them to <strong>ecolux.abirose@gmail.com</strong>.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <a class="btn" id="mail" href="mailto:ecolux.abirose@gmail.com?subject=MAB%20Business%20OS%20answers">Email my answers</a>
+          <button type="button" class="btn" id="copy" style="background:transparent;border:1px solid #F9F7F4">Copy my answers</button>
+        </div>
       </div>
     </form>
   </div>
@@ -546,6 +549,23 @@ footer small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:v
   }
   areas.forEach(function(a){ a.addEventListener('input', update); });
   update();
+  function answersText(){
+    var lines = ['MAB Business OS: answers from MeiLi', ''];
+    areas.forEach(function(a, i){
+      var label = document.querySelector('label[for="' + a.id + '"]').textContent;
+      lines.push((i + 1) + '. ' + label);
+      lines.push(a.value.trim() || '(not answered yet)');
+      lines.push('');
+    });
+    return lines.join('\n');
+  }
+  document.getElementById('mail').addEventListener('click', function(){
+    var short = ['MAB Business OS: answers from MeiLi', ''];
+    areas.forEach(function(a, i){ short.push((i + 1) + '. ' + a.getAttribute('data-q') + ': ' + (a.value.trim() || '(not answered yet)')); });
+    var body = short.join('\n');
+    if (body.length > 1800) { body = 'My answers are pasted below.\n\n'; try { navigator.clipboard.writeText(answersText()); status.textContent = 'Your answers are copied. Paste them into the email that opens.'; } catch(e) {} }
+    this.href = 'mailto:ecolux.abirose@gmail.com?subject=' + encodeURIComponent('MAB Business OS answers') + '&body=' + encodeURIComponent(body);
+  });
   document.getElementById('copy').addEventListener('click', function(){
     var lines = ['MAB Business OS: answers from MeiLi', ''];
     areas.forEach(function(a, i){
@@ -555,7 +575,7 @@ footer small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:v
       lines.push('');
     });
     var text = lines.join('\n');
-    var done = function(){ status.textContent = 'Copied. Paste your answers into an email to [YOUR EMAIL].'; };
+    var done = function(){ status.textContent = 'Copied. Paste your answers into an email to ecolux.abirose@gmail.com.'; };
     var fail = function(){ status.textContent = 'Copying was blocked here. Select your answers and copy them by hand.'; };
     try { navigator.clipboard.writeText(text).then(done, fail); } catch(e) { fail(); }
   });
