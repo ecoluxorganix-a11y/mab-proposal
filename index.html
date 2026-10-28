@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MAB Business OS Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* MAB brand kit: ivory ground, charcoal ink, olive for action, sand and blush as quiet surfaces. Layout: a calm editorial column with wide image moments. */
+  --ivory:#F9F7F4; --white:#FFFFFF; --ink:#3B393E; --muted:#5F5C63; --sand:#DCCDBD; --blush:#CFAF9F; --olive:#70745C; --olive-dark:#5B5F4A; --panel:#F1ECE6;
+  --display:'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+  --body:'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  --script:'Pinyon Script', 'Snell Roundhand', cursive;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;font-weight:400}
+img{max-width:100%;display:block}
+a{color:var(--olive-dark)}
+a:focus-visible,button:focus-visible,textarea:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:18px;max-width:62ch}
+
+/* top bar */
+.top{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:24px;max-width:1120px;margin:0 auto}
+.top img{height:15px;width:auto}
+.top nav{display:flex;flex-wrap:wrap;gap:20px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.top nav a{color:var(--ink);text-decoration:none}
+.top nav a:hover{color:var(--olive)}
+
+/* cover */
+.cover{display:flex;flex-wrap:wrap;align-items:stretch;border-top:1px solid var(--sand);border-bottom:1px solid var(--sand);background:var(--white)}
+.cover-text{flex:1 1 420px;padding:64px max(24px,6vw);display:flex;flex-direction:column;justify-content:center;gap:22px}
+.cover-text h1{font-size:clamp(44px,6vw,76px)}
+.cover-text .script{font-family:var(--script);font-size:34px;color:var(--olive);line-height:1.2}
+.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 28px;max-width:460px;padding-top:8px;border-top:1px solid var(--sand)}
+.meta dt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.meta dd{margin:2px 0 0;font-size:15px}
+.cover-img{flex:1 1 380px;min-height:420px;background:#2f3a2a}
+.cover-img img{width:100%;height:100%;object-fit:cover}
+
+section.block{padding:88px 0}
+section.block + section.block{border-top:1px solid var(--sand)}
+.head{display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+.head h2{font-size:clamp(34px,4.4vw,48px)}
+
+/* heard */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px}
+.card{background:var(--white);border:1px solid var(--sand);padding:28px}
+.card h3{font-size:26px;margin-bottom:12px}
+ul.clean{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-left:22px;position:relative}
+ul.clean li::before{content:"";position:absolute;left:0;top:.75em;width:10px;height:1px;background:var(--olive)}
+
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;counter-reset:step;list-style:none;margin:0;padding:0}
+.journey li{background:var(--white);border:1px solid var(--sand);padding:20px 22px;display:flex;flex-direction:column;gap:6px;counter-increment:step}
+.journey li::before{content:counter(step, decimal-leading-zero);font-family:var(--display);font-size:28px;color:var(--olive);line-height:1}
+.journey li strong{font-weight:600;font-size:15px}
+.journey li span{font-size:14px;color:var(--muted)}
+.journey li.heart{background:var(--olive);border-color:var(--olive);color:var(--white)}
+.journey li.heart::before,.journey li.heart span{color:#EEF0E8}
+.journey li.phase-label{grid-column:1/-1;counter-increment:none;background:none;border:0;padding:16px 0 0;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.journey li.phase-label::before{content:none}
+
+/* modules */
+.modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--sand);border:1px solid var(--sand)}
+.module{background:var(--ivory);padding:28px;display:flex;flex-direction:column;gap:10px}
+.module h3{font-size:25px}
+.module p{font-size:15px}
+.module .tag{align-self:flex-start;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:2px 10px;background:var(--panel);color:var(--muted)}
+
+/* mockups */
+.shots{display:flex;flex-direction:column;gap:56px}
+figure{margin:0;display:flex;flex-direction:column;gap:14px}
+.frame{border:1px solid var(--sand);background:var(--white);padding:10px;box-shadow:0 18px 40px -28px rgba(59,57,62,.35)}
+.frame .bar{display:flex;gap:6px;padding:2px 2px 10px}
+.frame .bar i{width:9px;height:9px;border-radius:50%;background:var(--sand);display:block}
+figcaption{display:flex;flex-direction:column;gap:4px;max-width:70ch}
+figcaption strong{font-family:var(--display);font-size:26px;font-weight:500}
+figcaption span{font-size:15px;color:var(--muted)}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:40px;align-items:start}
+.phone{max-width:300px;margin:0 auto;border:10px solid var(--ink);border-radius:36px;overflow:hidden;background:var(--white)}
+.tall{max-height:760px;overflow:auto}
+@media (max-width:760px){.duo{grid-template-columns:1fr}}
+
+/* phases */
+.phases{display:flex;flex-direction:column;gap:0;border-left:1px solid var(--olive);margin-left:8px}
+.phase{position:relative;padding:0 0 36px 36px}
+.phase::before{content:"";position:absolute;left:-7px;top:6px;width:13px;height:13px;background:var(--ivory);border:1px solid var(--olive);transform:rotate(45deg)}
+.phase h3{font-size:28px}
+.phase .what{margin-top:6px;max-width:72ch}
+.phase .gate{margin-top:10px;display:inline-block;font-size:13px;padding:6px 12px;background:var(--panel)}
+.phase .gate b{font-weight:600;color:var(--olive-dark)}
+.phase.later h3{color:var(--muted)}
+
+/* investment */
+.table-box{overflow-x:auto;border:1px solid var(--sand);background:var(--white)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:16px 20px;border-bottom:1px solid #ECE4DB;vertical-align:top}
+th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--ivory)}
+td.amt{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:500}
+tr.total td{font-weight:600;border-bottom:0;background:var(--panel)}
+.note{font-size:14px;color:var(--muted);margin-top:16px;max-width:75ch}
+
+/* questions */
+.qgroup{display:flex;flex-direction:column;gap:18px;margin-bottom:44px}
+.qgroup h3{font-size:28px;padding-bottom:8px;border-bottom:1px solid var(--sand)}
+.q{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 14px}
+.q .n{font-family:var(--display);font-size:26px;color:var(--olive);line-height:1.1}
+.q label{font-weight:500;font-size:16px}
+.q .why{grid-column:2;font-size:14px;color:var(--muted)}
+.q textarea{grid-column:2;width:100%;min-height:64px;padding:12px 14px;border:1px solid #CFC6BC;background:var(--white);color:var(--ink);font:inherit;font-size:15px;resize:vertical}
+.answer-bar{position:sticky;bottom:16px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;background:var(--ink);color:var(--ivory);padding:16px 20px;margin-top:8px}
+.answer-bar p{font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border:0;background:var(--olive);color:var(--white);font:inherit;font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--olive-dark)}
+
+/* next */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;counter-reset:n}
+.steps li{counter-increment:n;background:var(--white);border:1px solid var(--sand);padding:22px;display:flex;flex-direction:column;gap:8px}
+.steps li::before{content:counter(n);font-family:var(--display);font-size:34px;line-height:1;color:var(--olive)}
+.steps li strong{font-weight:600}
+.steps li span{font-size:14px;color:var(--muted)}
+
+
+/* needs checklist */
+.needs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.need{margin:0;border:1px solid var(--sand);background:var(--white);padding:24px 26px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.need legend{font-family:var(--display);font-size:26px;padding:0 8px;margin-left:-8px}
+.need .hint{font-size:14px;color:var(--muted)}
+.need label{display:block;position:relative;padding-left:30px;font-size:15px;line-height:1.5;cursor:pointer}
+.need input{position:absolute;left:0;top:3px;width:18px;height:18px;margin:0;accent-color:var(--olive)}
+.need em{display:inline-block;font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--olive-dark);background:#E7EAE0;padding:0 8px;margin-left:6px;text-decoration:none}
+.need label:has(input:checked){color:var(--muted);text-decoration:line-through}
+footer{padding:64px 24px 80px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;border-top:1px solid var(--sand);background:var(--white)}
+footer .script{font-family:var(--script);font-size:36px;color:var(--olive)}
+footer small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img src="img/wordmark.svg" alt="MeiLi Autumn Beauty">
+  <nav aria-label="Proposal sections">
+    <a href="#journey">Journey</a>
+    <a href="#system">The system</a>
+    <a href="#team">Team</a>
+    <a href="#screens">Screens</a>
+    <a href="#plan">Plan</a>
+    <a href="#investment">Investment</a>
+    <a href="#questions">Your answers</a>
+    <a href="#needs">What we need</a>
+  </nav>
+</header>
+
+<section class="cover" aria-labelledby="title">
+  <div class="cover-text">
+    <p class="eyebrow">A proposal for Hawaii's elite bridal styling team</p>
+    <h1 id="title">MAB Business OS</h1>
+    <p class="lede">One home for every bride, every call and every schedule, designed in your brand and written in your voice.</p>
+    <p class="script">Artistry with Aloha</p>
+    <dl class="meta">
+      <div><dt>Prepared for</dt><dd>MAB</dd></div>
+      <div><dt>Prepared by</dt><dd>Eco Lux Organix</dd></div>
+      <div><dt>Date</dt><dd>October 27, 2026</dd></div>
+      <div><dt>Valid until</dt><dd>January 1, 2027</dd></div>
+    </dl>
+  </div>
+  <div class="cover-img"><img src="img/bride-veil.jpg" alt="A MAB bride lifting her veil in a garden"></div>
+</section>
+
+<section class="block" aria-labelledby="aloha">
+  <div class="wrap two">
+    <div class="head" style="margin:0">
+      <p class="eyebrow">Aloha, MeiLi</p>
+      <h2 id="aloha">Your care stays personal. The busywork goes away.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <p class="lede">We propose to build MAB its own business system: one place where every bride's journey, every document and every team schedule lives.</p>
+      <p>It keeps what makes MAB special, your sales team's personal attention and your artistry, and removes the copy-paste, chasing and calendar back-and-forth behind them. It runs on the same framework we built for Eco Lux Organix, set up entirely in MAB's name, so you own your data, your domain and your billing.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="heard">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">What we heard</p>
+      <h2 id="heard">Today, one email runs on its own. Everything else runs on your sales team.</h2>
+    </div>
+    <div class="two">
+      <div class="card">
+        <h3>How it works now</h3>
+        <ul class="clean">
+          <li>Website inquiries trigger one Flodesk welcome email. Planners often email or call instead, so leads live in different places.</li>
+          <li>Your sales team checks availability and scope by hand, then personalizes one of several templates for each bride.</li>
+          <li>Calls with you are arranged by text and email, and nothing from them is captured for later.</li>
+          <li>Proposals, the style service agreement and the questionnaire go out together. Signatures, retainers and balances are tracked by hand.</li>
+          <li>After booking, the 30-day and week-of messages depend on the sales team's timing, with no set thank-you or review step.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What you asked for</h3>
+        <ul class="clean">
+          <li>An intake form with discovery-call booking from real open times</li>
+          <li>A personalized welcome and a Bridal Vision for every bride</li>
+          <li>Recorded calls with AI notes that fill the Look Book and packages</li>
+          <li>A consultation, proposals, agreements and payments in one flow</li>
+          <li>Timed emails from Congratulations to Post-Event, email only for now</li>
+          <li>Google Meet and Zoom, team logins and shared scheduling</li>
+          <li>A foundation for a future MAB Academy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="journey" aria-labelledby="journey-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">The bridal journey</p>
+      <h2 id="journey-h">Twelve caring steps, with her Look Book at the heart</h2>
+      <p class="lede">It keeps every touchpoint MAB has today and adds the discovery call your website already promises.</p>
+    </div>
+    <ol class="journey">
+      <li class="phase-label" aria-hidden="true">Before she books</li>
+      <li><strong>Inquiry</strong><span>She shares her details and books a 20-minute discovery call from your sales team's real open times. Planners can inquire for a bride.</span></li>
+      <li><strong>Welcome</strong><span>Your Maui or outer-island welcome, personalized with her name, date and venue, plus her Bridal Vision.</span></li>
+      <li><strong>Discovery call with your sales team</strong><span>Recorded with consent and summarized by AI. She uploads her dress and four inspiration photos.</span></li>
+      <li class="heart"><strong>Her Look Book</strong><span>Built from the call notes and her photos, reviewed by you or your sales team before she sees it.</span></li>
+      <li><strong>Consultation with you</strong><span>You walk her through her Look Book and the experience you recommend.</span></li>
+      <li><strong>Proposal and agreement</strong><span>One link to review, sign the style service agreement and pay the 50% retainer.</span></li>
+      <li class="phase-label" aria-hidden="true">After she books</li>
+      <li><strong>Booked</strong><span>The date locks only when she has signed and paid. She receives a congratulations email and her own portal.</span></li>
+      <li><strong>Halfway there</strong><span>Trial booking, extension color match, questionnaire, and a first look at her timeline.</span></li>
+      <li><strong>30 days out</strong><span>Her balance link and final details.</span></li>
+      <li><strong>Week of</strong><span>Room number, prep tips and arrival times. Your artists receive a day-of brief.</span></li>
+      <li><strong>Wedding day</strong><span>Everyone knows where to be and when.</span></li>
+      <li><strong>Mahalo</strong><span>A thank-you from you, a review request, and a place to share her professional photos.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="block" id="system" aria-labelledby="system-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">What you'll get</p>
+      <h2 id="system-h">One system for brides, your team and the business</h2>
+    </div>
+    <div class="modules">
+      <div class="module"><span class="tag">Brides</span><h3>Intake and call booking</h3><p>A MAB-branded inquiry form linked from your website, with live discovery slots and an automatic date check against your team's capacity.</p></div>
+      <div class="module"><span class="tag">Brides</span><h3>Bride portal</h3><p>Her vision, uploads, Look Book, timeline, agreement and payments in one private place, designed for her phone.</p></div>
+      <div class="module"><span class="tag">Brides</span><h3>Look Book builder</h3><p>A beautiful, personal Look Book assembled from her call and photos. Nothing AI-written reaches a bride until you or your sales team approve it.</p></div>
+      <div class="module"><span class="tag">Sales</span><h3>Bride pipeline</h3><p>Every inquiry, planner and booking in one view, with a clear stage and the next action for each bride.</p></div>
+      <div class="module"><span class="tag">Sales</span><h3>AI call notes</h3><p>Discovery calls and consultations are recorded and summarized, so no detail from a conversation is lost.</p></div>
+      <div class="module"><span class="tag">Sales</span><h3>Proposals, agreements, payments</h3><p>Proposals built from your packages and pricing rules, e-signature, the 50% retainer and balance reminders.</p></div>
+      <div class="module"><span class="tag">Team</span><h3>Journey emails</h3><p>23 touchpoints from welcome to anniversary, in MAB's voice. Email only at launch, with texting ready to switch on later.</p></div>
+      <div class="module"><span class="tag">Team</span><h3>Team scheduling</h3><p>Logins for you, Marianne, your sales team and each artist. Google Meet and Zoom, two-way Google Calendar sync, studio booking and artist assignments.</p></div>
+      <div class="module"><span class="tag">Business</span><h3>Business dashboard</h3><p>Bookings by month, retainers collected, balances due, lead sources and which planners send you the most brides.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="team" aria-labelledby="team-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Your team</p>
+      <h2 id="team-h">Marianne runs the team from one place</h2>
+      <p class="lede">As Team Manager, Marianne schedules and assigns your artists, while each artist sees only her own weddings, on her phone.</p>
+    </div>
+    <div class="modules">
+      <div class="module"><span class="tag">Access</span><h3>The right view for each role</h3><p>You see everything. Marianne, as Team Manager, handles schedules, assignments and availability. Your sales team works with brides. Artists see only their own bookings and pay.</p></div>
+      <div class="module"><span class="tag">Profiles</span><h3>Artist profiles</h3><p>Services, islands, specialties such as extensions or airbrush, and working days, so Marianne can see who fits each wedding.</p></div>
+      <div class="module"><span class="tag">Availability</span><h3>Time off and capacity</h3><p>Artists request time off in the app and Marianne approves it. Each date's capacity updates, so no one books a day the team can't cover.</p></div>
+      <div class="module"><span class="tag">Scheduling</span><h3>Assignments</h3><p>Marianne assigns artists to each person in the party. Start times build back from the ready-by time, conflicts are flagged, and artists accept in the app.</p></div>
+      <div class="module"><span class="tag">Wedding day</span><h3>Day-of brief</h3><p>Two days before, each artist receives the bride's looks, timeline, room number and who she's working on.</p></div>
+      <div class="module"><span class="tag">Business</span><h3>Pay and performance</h3><p>Earnings recorded per wedding, a monthly payout report per artist, and reviews linked to the artists who worked each wedding.</p></div>
+      <div class="module"><span class="tag">Standards</span><h3>Training, later</h3><p>The future Academy can hold the MAB way: the Radiant ritual, kit checklists, products and onboarding for new artists.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="screens" aria-labelledby="screens-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">See it</p>
+      <h2 id="screens-h">A first look at your screens</h2>
+      <p class="lede">Early design mockups in your colors, type and logos, using your package names and team from meiliautumn.com. Brides, dates and figures are examples only.</p>
+    </div>
+    <div class="shots">
+      <figure>
+        <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="tall"><img src="img/main.jpg" alt="Intake form with a calendar for booking the discovery call" loading="lazy"></div></div>
+        <figcaption><strong>Begin your bridal journey</strong><span>The inquiry form brides reach from your website. She picks a real discovery-call time, and the Meet or Zoom link arrives by email.</span></figcaption>
+      </figure>
+      <div class="duo">
+        <figure>
+          <div class="phone"><img src="img/portal.jpg" alt="Bride portal on a phone showing her next step and journey checklist" loading="lazy"></div>
+          <figcaption><strong>Her portal</strong><span>Her next step, countdown and progress, always on her phone.</span></figcaption>
+        </figure>
+        <figure>
+          <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="tall"><img src="img/lookbook.jpg" alt="A personal Look Book with makeup and hair direction and a draft timeline" loading="lazy"></div></div>
+          <figcaption><strong>Her Look Book</strong><span>The feeling she described, makeup and hair direction, her inspiration, your recommendation and a draft getting-ready timeline.</span></figcaption>
+        </figure>
+      </div>
+      <figure>
+        <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/pipeline.jpg" alt="Team pipeline with columns from inquiry to booked" loading="lazy"></div>
+        <figcaption><strong>Your sales pipeline</strong><span>Every bride by stage, with what needs attention today at the top.</span></figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/record.jpg" alt="A bride's record with the AI summary of her discovery call" loading="lazy"></div>
+        <figcaption><strong>A bride's record</strong><span>Her journey stage, the AI summary of her call, her uploads and every message sent, in one place.</span></figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/calendar.jpg" alt="Team calendar showing calls, a bridal preview and a wedding day" loading="lazy"></div>
+        <figcaption><strong>Team calendar</strong><span>Calls, previews and weddings across the team and the studio, synced with each person's Google Calendar.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="plan" aria-labelledby="plan-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">How we'll build it</p>
+      <h2 id="plan-h">In the order a bride travels, one checkpoint at a time</h2>
+      <p class="lede">Each phase goes live before the next begins, so MAB benefits early. Flodesk and your current templates stay in place until the new system has proven itself.</p>
+    </div>
+    <div class="phases">
+      <div class="phase"><h3>Phase 0 · Foundations</h3><p class="what">Accounts in MAB's name, your final packages and pricing, your agreement, approved email wording and brand assets loaded.</p><p class="gate"><b>Checkpoint:</b> you approve the package catalog and the agreement.</p></div>
+      <div class="phase"><h3>Phase 1 · Inquiry to discovery</h3><p class="what">Intake form, pipeline, welcome emails, date check, discovery booking and reminders, team logins and calendars, bride portal and Bridal Vision.</p><p class="gate"><b>Checkpoint:</b> your sales team handles every new inquiry in the system.</p></div>
+      <div class="phase"><h3>Phase 2 · Calls to booking</h3><p class="what">Call recording and AI notes, uploads, the Look Book builder, consultations, proposals, e-signature and the retainer payment.</p><p class="gate"><b>Checkpoint:</b> the first bride signs and pays inside the system.</p></div>
+      <div class="phase"><h3>Phase 3 · Booked to Mahalo</h3><p class="what">Halfway, 30-day, balance and week-of emails, artist assignments and day-of briefs, the post-wedding review flow and your dashboard.</p><p class="gate"><b>Checkpoint:</b> one full wedding runs start to finish with no manual email.</p></div>
+      <div class="phase later"><h3>Phase 4 · MAB Academy</h3><p class="what">Courses and certification on the same login, shaped with you once Phase 3 is live.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="investment" aria-labelledby="inv-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Investment</p>
+      <h2 id="inv-h">Investment by phase</h2>
+    </div>
+    <div class="table-box">
+      <table>
+        <thead><tr><th scope="col">Phase</th><th scope="col">Includes</th><th scope="col">Investment</th></tr></thead>
+        <tbody>
+          <tr><td>Phase 0 · Foundations</td><td>Setup, catalog, agreement, brand system</td><td class="amt">[PRICE]</td></tr>
+          <tr><td>Phase 1 · Inquiry to discovery</td><td>Intake, pipeline, welcome emails, scheduling, portal</td><td class="amt">[PRICE]</td></tr>
+          <tr><td>Phase 2 · Calls to booking</td><td>AI notes, Look Book, proposals, e-signature, payments</td><td class="amt">[PRICE]</td></tr>
+          <tr><td>Phase 3 · Booked to Mahalo</td><td>Journey emails, artist tools, reviews, dashboard</td><td class="amt">[PRICE]</td></tr>
+          <tr class="total"><td>Build total</td><td>Phases 0 to 3</td><td class="amt">[TOTAL]</td></tr>
+          <tr><td>Ongoing care</td><td>Hosting oversight, updates, support</td><td class="amt">[MONTHLY]</td></tr>
+          <tr><td>Phase 4 · MAB Academy</td><td>Quoted separately once scoped</td><td class="amt">To be scoped</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Third-party services are billed directly to MAB by each provider: Google Workspace, Zoom, Stripe card fees, email sending, hosting, database and AI usage. Payment schedule: [PAYMENT TERMS].</p>
+  </div>
+</section>
+
+<section class="block" id="questions" aria-labelledby="q-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Your answers</p>
+      <h2 id="q-h">Seventeen questions before we begin</h2>
+      <p class="lede">Type your answers right here, then copy them into an email back to us. The first five shape the build itself.</p>
+    </div>
+    <form id="qform" novalidate>
+      <div class="qgroup">
+        <h3>Your packages and policies</h3>
+        <div class="q"><span class="n">1</span><label for="q1">Your website lists Radiant, Elevated and Signature, while your emails and FAQ use Radiant, Ultimate and Complete. Which names should brides see?</label><p class="why">The mockups follow your website for now.</p><textarea id="q1" data-q="Package names"></textarea></div>
+        <div class="q"><span class="n">2</span><label for="q2">Could you share your current style service agreement, and your cancellation, refund and date-change policy?</label><p class="why">Brides will sign it inside the system.</p><textarea id="q2" data-q="Agreement and policies"></textarea></div>
+        <div class="q"><span class="n">3</span><label for="q3">Which invoicing tool do you use today, and do you already have a Stripe account?</label><textarea id="q3" data-q="Invoicing and Stripe"></textarea></div>
+      </div>
+      <div class="qgroup">
+        <h3>Your process</h3>
+        <div class="q"><span class="n">4</span><label for="q4">Should every bride have both a discovery call and a consultation, or can elopements, bride-only and photoshoot inquiries go straight to a proposal?</label><textarea id="q4" data-q="Calls per bride"></textarea></div>
+        <div class="q"><span class="n">5</span><label for="q5">When would you like to join personally: Radiant brides only, or above a certain party size or budget?</label><textarea id="q5" data-q="When MeiLi joins"></textarea></div>
+        <div class="q"><span class="n">6</span><label for="q6">When a date is full, what should we offer: referrals to trusted artists, a waitlist, or both?</label><textarea id="q6" data-q="Full dates"></textarea></div>
+        <div class="q"><span class="n">7</span><label for="q7">Your website introduces Marianne, Amanda, Gena, Crystal, Jen and AmberLee. Who should have logins, which islands and services does each cover, and is each a contractor or employee, paid how per wedding?</label><textarea id="q7" data-q="Artist team"></textarea></div>
+      </div>
+      <div class="q"><span class="n">8</span><label for="q16">Should Marianne, as Team Manager, schedule and assign artists on her own, or would you like to approve every assignment?</label><textarea id="q16" data-q="Marianne and assignments"></textarea></div>
+        <div class="q"><span class="n">9</span><label for="q17">Should artists see the bride's full Look Book, or only her timeline and looks?</label><textarea id="q17" data-q="What artists see"></textarea></div>
+      </div>
+      <div class="qgroup">
+        <h3>Your tools</h3>
+        <div class="q"><span class="n">10</span><label for="q8">Who uses Google Meet and who uses Zoom?</label><textarea id="q8" data-q="Meet or Zoom"></textarea></div>
+        <div class="q"><span class="n">11</span><label for="q9">Who manages the meiliautumn.com domain and your Showit site, and can we have access?</label><textarea id="q9" data-q="Domain and Showit access"></textarea></div>
+        <div class="q"><span class="n">12</span><label for="q10">Where do your current and past clients live today (Flodesk, Tave, spreadsheets), so we can bring your 2026 and 2027 bookings over?</label><textarea id="q10" data-q="Current client records"></textarea></div>
+      </div>
+      <div class="qgroup">
+        <h3>Your brand and content</h3>
+        <div class="q"><span class="n">13</span><label for="q11">Is there a Look Book or vision board you love that we can design from? And what do you picture for the "Grand Reveal" and "BeautyPro Funnels"?</label><textarea id="q11" data-q="Look Book references"></textarea></div>
+        <div class="q"><span class="n">14</span><label for="q12">Where should brides leave reviews: Google, The Knot, WeddingWire, or somewhere else?</label><textarea id="q12" data-q="Review sites"></textarea></div>
+        <div class="q"><span class="n">15</span><label for="q13">Which portfolio photos are cleared for use in Look Books, and with which photographer credits?</label><textarea id="q13" data-q="Photo permissions"></textarea></div>
+        <div class="q"><span class="n">16</span><label for="q14">Your welcome email says 25 years of experience and your About page says over 20. Which should we use?</label><textarea id="q14" data-q="Years of experience"></textarea></div>
+      </div>
+      <div class="qgroup">
+        <h3>Looking ahead</h3>
+        <div class="q"><span class="n">17</span><label for="q15">Who is the MAB Academy for (artists, brides or both), and when would you like it to open?</label><textarea id="q15" data-q="MAB Academy"></textarea></div>
+      </div>
+      <div class="answer-bar">
+        <p id="status" role="status" aria-live="polite"><span id="count">0</span> of 17 answered. Copy them, then paste into an email to [YOUR EMAIL].</p>
+        <button type="button" class="btn" id="copy">Copy my answers</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="block" id="needs" aria-labelledby="needs-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">What we'll need from you</p>
+      <h2 id="needs-h">Everything we need to begin</h2>
+      <p class="lede">Tick items off as you gather them. Items marked "Before kickoff" let Phase 0 start; the rest can follow during Phase 1.</p>
+    </div>
+    <div class="needs">
+      <fieldset class="need">
+        <legend>Approvals</legend>
+        <label><input type="checkbox"> Signed approval of this proposal <em>Before kickoff</em></label>
+        <label><input type="checkbox"> First payment: [DEPOSIT AMOUNT] <em>Before kickoff</em></label>
+        <label><input type="checkbox"> Answers to the seventeen questions above <em>Before kickoff</em></label>
+        <label><input type="checkbox"> One decision-maker for sign-offs at each checkpoint</label>
+      </fieldset>
+      <fieldset class="need">
+        <legend>Access</legend>
+        <label><input type="checkbox"> meiliautumn.com domain settings (DNS), or the person who manages them <em>Before kickoff</em></label>
+        <label><input type="checkbox"> Showit site editor access, to point your buttons to the new form</label>
+        <label><input type="checkbox"> Google Workspace admin, for team calendars and Google Meet</label>
+        <label><input type="checkbox"> Zoom account, for anyone who prefers Zoom</label>
+        <label><input type="checkbox"> Flodesk access, to export subscribers and reuse your email designs</label>
+        <label><input type="checkbox"> Your current invoicing tool, to export bookings and payments</label>
+      </fieldset>
+      <fieldset class="need">
+        <legend>New accounts</legend>
+        <p class="hint">All in MAB's name. We set them up together on a short call, with your card on file, so MAB owns everything.</p>
+        <label><input type="checkbox"> Stripe, for retainers and balances <em>Before kickoff</em></label>
+        <label><input type="checkbox"> Hosting and database (Vercel Pro and Supabase)</label>
+        <label><input type="checkbox"> Email sending from meiliautumn.com (Resend)</label>
+        <label><input type="checkbox"> AI service for call notes and Look Book drafts</label>
+        <label><input type="checkbox"> Code repository (GitHub), owned by MAB</label>
+      </fieldset>
+      <fieldset class="need">
+        <legend>Documents</legend>
+        <label><input type="checkbox"> Your style service agreement <em>Before kickoff</em></label>
+        <label><input type="checkbox"> Cancellation, refund and date-change policy <em>Before kickoff</em></label>
+        <label><input type="checkbox"> 2026 Pricing Catalogue, with every package, add-on and fee <em>Before kickoff</em></label>
+        <label><input type="checkbox"> Your bridal style questionnaire</label>
+        <label><input type="checkbox"> One recent proposal you sent, plus your 30-day and week-of emails</label>
+        <label><input type="checkbox"> Your skin and hair prep tips for brides</label>
+      </fieldset>
+      <fieldset class="need">
+        <legend>Your team</legend>
+        <label><input type="checkbox"> Team list: name, email, role, services and islands for Marianne and each artist</label>
+        <label><input type="checkbox"> Usual working days and blackout dates for each artist</label>
+        <label><input type="checkbox"> How each artist is paid per service, per person and for travel</label>
+        <label><input type="checkbox"> Headshots and short bios, for brides' portals and day-of introductions</label>
+      </fieldset>
+      <fieldset class="need">
+        <legend>Brides and content</legend>
+        <label><input type="checkbox"> Every booked 2026 and 2027 wedding, with retainers and balances paid <em>Before kickoff</em></label>
+        <label><input type="checkbox"> Open inquiries and proposals not yet answered</label>
+        <label><input type="checkbox"> Portfolio photos cleared for Look Books, with photographer credits</label>
+        <label><input type="checkbox"> A Look Book or vision board you love, as a design reference</label>
+        <label><input type="checkbox"> Where brides should leave reviews</label>
+      </fieldset>
+    </div>
+    <p class="note" id="needs-count" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="next-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Next steps</p>
+      <h2 id="next-h">From yes to your first bride in the new system</h2>
+    </div>
+    <ol class="steps">
+      <li><strong>Review</strong><span>Read this proposal and the screens, and share any changes you would like.</span></li>
+      <li><strong>Answer</strong><span>Send back the seventeen questions, starting with the first five.</span></li>
+      <li><strong>Approve</strong><span>Sign off on scope and investment, and make the first payment to reserve your start.</span></li>
+      <li><strong>Gather</strong><span>Send the "Before kickoff" items from the list above.</span></li>
+      <li><strong>Set up</strong><span>A short call to open MAB's accounts together, starting with Stripe and email.</span></li>
+      <li><strong>Kick off</strong><span>Phase 0: final packages, agreement wording, email copy and team list approved.</span></li>
+      <li><strong>Go live</strong><span>Phase 1 launches and your sales team's first new inquiries arrive in the system.</span></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <img src="img/monogram.svg" alt="MAB" style="height:30px;width:auto">
+  <p class="script">Me Ke Aloha, With Love</p>
+  <p style="font-family:var(--display);font-style:italic;font-size:20px">Ua ola loko i ke aloha. Love gives life within.</p>
+  <small>Elegant hair. Luminous makeup. Inner radiance.</small>
+</footer>
+
+<script>
+(function(){
+  var areas = Array.prototype.slice.call(document.querySelectorAll('#qform textarea'));
+  var count = document.getElementById('count');
+  var status = document.getElementById('status');
+  var KEY = 'mab-proposal-answers';
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || '{}'); areas.forEach(function(a){ if (saved[a.id]) a.value = saved[a.id]; }); } catch(e) {}
+  function update(){
+    var n = areas.filter(function(a){ return a.value.trim(); }).length;
+    count.textContent = n;
+    try { var o = {}; areas.forEach(function(a){ o[a.id] = a.value; }); localStorage.setItem(KEY, JSON.stringify(o)); } catch(e) {}
+  }
+  areas.forEach(function(a){ a.addEventListener('input', update); });
+  update();
+  document.getElementById('copy').addEventListener('click', function(){
+    var lines = ['MAB Business OS: answers from MeiLi', ''];
+    areas.forEach(function(a, i){
+      var label = document.querySelector('label[for="' + a.id + '"]').textContent;
+      lines.push((i + 1) + '. ' + label);
+      lines.push(a.value.trim() || '(not answered yet)');
+      lines.push('');
+    });
+    var text = lines.join('\n');
+    var done = function(){ status.textContent = 'Copied. Paste your answers into an email to [YOUR EMAIL].'; };
+    var fail = function(){ status.textContent = 'Copying was blocked here. Select your answers and copy them by hand.'; };
+    try { navigator.clipboard.writeText(text).then(done, fail); } catch(e) { fail(); }
+  });
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.need input[type=checkbox]'));
+  var nc = document.getElementById('needs-count');
+  var NKEY = 'mab-proposal-needs';
+  try { var sv = JSON.parse(localStorage.getItem(NKEY) || '[]'); boxes.forEach(function(b, i){ b.checked = !!sv[i]; }); } catch(e) {}
+  function ncount(){
+    var n = boxes.filter(function(b){ return b.checked; }).length;
+    nc.textContent = n + ' of ' + boxes.length + ' items gathered.';
+    try { localStorage.setItem(NKEY, JSON.stringify(boxes.map(function(b){ return b.checked; }))); } catch(e) {}
+  }
+  boxes.forEach(function(b){ b.addEventListener('change', ncount); });
+  ncount();
+  document.getElementById('qform').addEventListener('submit', function(e){ e.preventDefault(); });
+})();
+</script>
+</body>
+</html>
