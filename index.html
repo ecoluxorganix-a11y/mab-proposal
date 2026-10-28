@@ -89,7 +89,8 @@ figcaption{display:flex;flex-direction:column;gap:4px;max-width:70ch}
 figcaption strong{font-family:var(--display);font-size:26px;font-weight:500}
 figcaption span{font-size:15px;color:var(--muted)}
 .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:40px;align-items:start}
-.phone{max-width:300px;margin:0 auto;border:10px solid var(--ink);border-radius:36px;overflow:hidden;background:var(--white)}
+.phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;justify-items:center}
+.phone{max-width:280px;width:100%;border:10px solid var(--ink);border-radius:36px;overflow:hidden;background:var(--white)}
 .tall{max-height:760px;overflow:auto}
 @media (max-width:760px){.duo{grid-template-columns:1fr}}
 
@@ -260,7 +261,7 @@ footer small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:v
     </div>
     <div class="modules">
       <div class="module"><span class="tag">Brides</span><h3>Intake and call booking</h3><p>A MAB-branded inquiry form linked from your website, with live discovery slots and an automatic date check against your team's capacity.</p></div>
-      <div class="module"><span class="tag">Brides</span><h3>Bride portal</h3><p>Her vision, uploads, Look Book, timeline, agreement and payments in one private place, designed for her phone.</p></div>
+      <div class="module"><span class="tag">Brides</span><h3>Bride portal and messages</h3><p>Her own login to see her Look Book, timeline, agreement and payments, upload her dress and inspiration photos, and message the MAB Sales Team directly. All designed for her phone.</p></div>
       <div class="module"><span class="tag">Brides</span><h3>Look Book builder</h3><p>A beautiful, personal Look Book assembled from her call and photos. Nothing AI-written reaches a bride until you or your sales team approve it.</p></div>
       <div class="module"><span class="tag">Sales</span><h3>Bride pipeline</h3><p>Every inquiry, planner and booking in one view, with a clear stage and the next action for each bride.</p></div>
       <div class="module"><span class="tag">Sales</span><h3>AI call notes</h3><p>Discovery calls and consultations are recorded and summarized, so no detail from a conversation is lost.</p></div>
@@ -303,9 +304,18 @@ footer small{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:v
         <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="tall"><img src="img/main.jpg" alt="Intake form with a calendar for booking the discovery call" loading="lazy"></div></div>
         <figcaption><strong>Begin your bridal journey</strong><span>The inquiry form brides reach from your website. She picks a real discovery-call time, and the Meet or Zoom link arrives by email.</span></figcaption>
       </figure>
-      <div class="duo">
-        <figure>
-          <div class="phone"><img src="img/portal.jpg" alt="Bride portal on a phone showing her next step and journey checklist" loading="lazy"></div>
+      <figure>
+        <div class="phones">
+          <div class="phone"><img src="img/portal.jpg" alt="Bride portal home with her next step and journey checklist" loading="lazy"></div>
+          <div class="phone"><img src="img/portalinspo.jpg" alt="Bride uploading her dress and inspiration photos" loading="lazy"></div>
+          <div class="phone"><img src="img/portalchat.jpg" alt="Bride messaging the MAB Sales Team in her portal" loading="lazy"></div>
+        </div>
+        <figcaption><strong>Her own login</strong><span>Every bride signs in to her portal to see her next step, her Look Book, timeline, agreement and payments. She uploads her dress and inspiration photos, and messages the MAB Sales Team directly, with an email letting her know when the team replies.</span></figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><div class="tall"><img src="img/lookbook.jpg" alt="Kristin's personal Look Book with makeup and hair direction and a draft timeline" loading="lazy"></div></div>
+        <figcaption><strong>Her Look Book</strong><span>The feeling she described, makeup and hair direction, her inspiration photos, MeiLi's recommendation and a draft getting-ready timeline, always in her portal.</span></figcaption>
+      </figure>
           <figcaption><strong>Her portal</strong><span>Her next step, countdown and progress, always on her phone.</span></figcaption>
         </figure>
         <figure>
